@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AccessibilityServiceTest</string>
+    <string name="description">アクセシビリティサービス</string>
+</resources>
