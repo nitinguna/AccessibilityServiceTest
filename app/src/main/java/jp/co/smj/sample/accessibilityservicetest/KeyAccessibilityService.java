@@ -1,6 +1,7 @@
 package jp.co.smj.sample.accessibilityservicetest;
 
 import android.accessibilityservice.AccessibilityService;
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -26,6 +27,11 @@ public class KeyAccessibilityService extends AccessibilityService {
     private InputManagerWrapper inputManager;
     private int deviceId = -1;
 
+    @Override
+    public void onCreate() {
+
+    }
+
     public int onStartCommand(Intent intent, int flags, int startId) {
         inputManager = new InputManagerWrapper();
 
@@ -33,8 +39,33 @@ public class KeyAccessibilityService extends AccessibilityService {
             @Override
             public void onReceive(Context context, Intent intent) {
                 // input key events
-                Log.e(TAG, "Recived broadcast");
-                keyPress(KeyEvent.KEYCODE_VOLUME_DOWN, 0);
+
+                int iSelectedItem = intent.getIntExtra("keyitem", -1);
+                Log.e(TAG, "Recived broadcast key " +iSelectedItem);
+                switch (iSelectedItem){
+                    case 1:
+                        keyPress(KeyEvent.KEYCODE_POWER, 0);
+                        break;
+                    case 2:
+                        keyPress(KeyEvent.KEYCODE_HOME, 0);
+                        break;
+                    case 3:
+                        keyPress(KeyEvent.KEYCODE_BACK, 0);
+                        break;
+                    case 4:
+                        keyPress(103, 0);
+                        break;
+                    case 5:
+                        keyPress(KeyEvent.KEYCODE_VOLUME_UP, 0);
+                        break;
+                    case 6:
+                        keyPress(KeyEvent.KEYCODE_VOLUME_DOWN, 0);
+                        break;
+                    default :
+                        break;
+
+                }
+                //keyPress(KeyEvent.KEYCODE_VOLUME_DOWN, 0);
             }
         };
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED);
@@ -81,6 +112,7 @@ public class KeyAccessibilityService extends AccessibilityService {
     @Override
     public void onServiceConnected() {
         Log.d(TAG, "on Service Connected");
+        getServiceInfo().flags = AccessibilityServiceInfo.FLAG_REQUEST_FILTER_KEY_EVENTS | AccessibilityServiceInfo.FLAG_REQUEST_ACCESSIBILITY_BUTTON;
     }
 
     @Override
@@ -91,6 +123,7 @@ public class KeyAccessibilityService extends AccessibilityService {
     public void onInterrupt() {
         Log.d(TAG, "onInterrupt");
     }
+
 
     @Override
     protected boolean onKeyEvent(KeyEvent event) {

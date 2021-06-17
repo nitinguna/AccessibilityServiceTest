@@ -52,28 +52,35 @@ public class MainActivity extends AppCompatActivity {
         KeyEvent kd, ku;
         switch (tag) {
             case 1:
+                /*
                 kd = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_POWER);
                 ku = new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_POWER);
                 mInputConnection.sendKeyEvent(kd);
-                mInputConnection.sendKeyEvent(ku);
+                mInputConnection.sendKeyEvent(ku);*/
+                keyPress(KeyEvent.KEYCODE_POWER, 0);
                 break;
             case 2:
+                /*
                 kd = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HOME);
                 ku = new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_HOME);
                 mInputConnection.sendKeyEvent(kd);
-                mInputConnection.sendKeyEvent(ku);
+                mInputConnection.sendKeyEvent(ku);*/
+                keyPress(KeyEvent.KEYCODE_HOME, 0);
                 break;
             case 3:
+                /*
                 kd = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK);
                 ku = new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK);
                 mInputConnection.sendKeyEvent(kd);
-                mInputConnection.sendKeyEvent(ku);
+                mInputConnection.sendKeyEvent(ku);*/
+                keyPress(KeyEvent.KEYCODE_BACK, 0);
                 break;
             case 4:
-                kd = new KeyEvent(KeyEvent.ACTION_DOWN, 103);
+               /* kd = new KeyEvent(KeyEvent.ACTION_DOWN, 103);
                 ku = new KeyEvent(KeyEvent.ACTION_UP, 103);
                 mInputConnection.sendKeyEvent(kd);
-                mInputConnection.sendKeyEvent(ku);
+                mInputConnection.sendKeyEvent(ku);*/
+                keyPress(103, 0);
                 break;
             case 5:
                 //simulateKey(KeyEvent.KEYCODE_VOLUME_UP);
